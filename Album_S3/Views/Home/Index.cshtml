@@ -1,0 +1,50 @@
+﻿@model Album_S3.Models.Album
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+
+<style type="text/css">
+    .panelhdr {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #d9d9d9;
+        margin-bottom: 1.25rem;
+        padding: 1.25rem;
+        background: #f2f2f2;
+        min-height: 200px;
+        float:left;
+        width:100%;
+    }
+</style>
+
+<div class="jumbotron">
+    <h3>Welcome to AWS-S3 Sample</h3>
+    <hr />
+</div>
+
+<div class="panelhdr" style="margin-top:10px;padding:10px 20px;">
+    @using (Html.BeginForm("FileUpload", "Home",
+                    FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>Select a file and click the "Upload File" button to upload the file.</p>
+        <input name="uploadFile" style="float:left;" type="file" />
+        <button type="submit" class="btn btn-primary" style="float:left;">Upload File</button>
+        <br /><br />
+        <p>@ViewBag.UploadMessage</p>
+
+        if (ViewBag.AlbumList != null)
+        {
+            foreach (var album in ViewBag.AlbumList)
+            {
+            <div class="col-md-4" style="margin-top:20px"><img src="/Images/@album.name" class="img-rounded img-responsive center-block" alt="image" width="300" height="300"> </div>
+            }
+        }
+
+    }
+</div>
